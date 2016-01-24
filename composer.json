@@ -1,0 +1,26 @@
+{
+  "name": "krausv/permissions-panel",
+  "type": "library",
+  "description": "Bar with list of permissions",
+  "keywords": ["tracy", "bar", "vendor", "composer", "composer.lock"],
+  "license": ["MIT"],
+  "authors": [
+    {
+      "name": "Václav Kraus",
+      "email": "krauva@gmail.com",
+      "homepage": "http://vk-web.cz"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "tracy/tracy": "^2.3.0"
+  },
+  "suggest": {
+    "nette/di": "For automatic panel loading"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  }
+}

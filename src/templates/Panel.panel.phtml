@@ -1,0 +1,38 @@
+<?php
+namespace Krausv\PermissionsPanel;
+
+
+/**
+ * @var  string|NULL $lockFile
+ * @var  string|NULL $jsonFile
+ * @var  string|NULL $error
+ * @var  array $data
+ */
+?>
+
+<h1>Permissions panel</h1>
+<div class="tracy-inner">
+    <?php if ($error): ?>
+        <span style="color:red"><?=$error ?></span>
+    <?php else: ?>
+
+    <h2>Roles</h2>
+    <table>
+        <tr>
+        <?php foreach ($permissions->getRoles() as $role): ?>
+                <td><?=$role?></td>
+        <?php endforeach ?>
+        </tr>
+    </table>
+
+    <h2>Resources</h2>
+    <table>
+        <tr>
+            <?php foreach ($permissions->getResources() as $resource): ?>
+                <td><?=$resource?></td>
+            <?php endforeach ?>
+        </tr>
+
+    </table>
+    <?php endif ?>
+</div>
