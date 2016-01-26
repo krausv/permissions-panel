@@ -1,38 +1,30 @@
 <?php
 namespace Krausv\PermissionsPanel;
 
-
-/**
- * @var  string|NULL $lockFile
- * @var  string|NULL $jsonFile
- * @var  string|NULL $error
- * @var  array $data
- */
 ?>
 
 <h1>Permissions panel</h1>
 <div class="tracy-inner">
-    <?php if ($error): ?>
-        <span style="color:red"><?=$error ?></span>
-    <?php else: ?>
-
-    <h2>Roles</h2>
-    <table>
-        <tr>
-        <?php foreach ($permissions->getRoles() as $role): ?>
-                <td><?=$role?></td>
-        <?php endforeach ?>
-        </tr>
-    </table>
-
-    <h2>Resources</h2>
-    <table>
-        <tr>
-            <?php foreach ($permissions->getResources() as $resource): ?>
-                <td><?=$resource?></td>
-            <?php endforeach ?>
-        </tr>
-
-    </table>
-    <?php endif ?>
+		<?php foreach ($resources as $resource):?>
+			<h2 title="Resource <?=$resource?>"><?=$resource?></h2>
+			<?php $tmp = $permissions["\x00Nette\\Security\\Permission\x00rules"]["byResource"][$resource]; ?>
+			<table>
+			<tr>
+			<th>Role</th>
+			<th>Privileges</th>
+			</tr>
+			<?php foreach ($roles as $role):?>
+				<?php if (array_key_exists($role, $tmp["byRole"])): ?>
+					<tr>
+						<td><?=$role?></td>
+							<td>
+							<?php foreach($tmp["byRole"][$role]["byPrivilege"] as $key => $allow): ?>
+								<?=$key ?>
+							<?php endforeach ?>
+							</td>
+						</tr>
+				<?php endif ?>
+				<?php endforeach ?>
+			</table>
+	<?php endforeach ?>
 </div>
