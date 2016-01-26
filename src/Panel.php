@@ -17,43 +17,41 @@ use Nette;
 class Panel extends Nette\Object implements Tracy\IBarPanel
 {
 
-    /** @var string */
-    private $error;
-    /** @var string */
-    private $dir;
+	/** @var string */
+	private $dir;
 
-    private $container;
+	private $container;
 
-    public function __construct($container)
-    {
-       $this->container = $container;
-    }
+	public function __construct($container)
+	{
+		$this->container = $container;
+	}
 
-    /**
-     * Renders HTML code for custom tab.
-     * @return string
-     */
-    function getTab()
-    {
-        ob_start();
-        require __DIR__ . '/templates/Panel.tab.phtml';
-        return ob_get_clean();
-    }
+	/**
+	 * Renders HTML code for custom tab.
+	 * @return string
+	 */
+	function getTab()
+	{
+		ob_start();
+		require __DIR__ . '/templates/Panel.tab.phtml';
+		return ob_get_clean();
+	}
 
-    /**
-     * Renders HTML code for custom panel.
-     * @return string
-     */
-    function getPanel()
-    {
-        ob_start();
-        $error = $this->error;
+	/**
+	 * Renders HTML code for custom panel.
+	 * @return string
+	 */
+	function getPanel()
+	{
+		ob_start();
 
-        if ($this->error === NULL) {
-            $permissions = $this->container->getByType('Nette\Security\Permission');
-        }
+		$Permission = $this->container->getByType('Nette\Security\Permission');
+		$permissions = (array)$Permission;
+		$resources = $Permission->getResources();
+		$roles = $Permission->getRoles();
 
-        require __DIR__ . '/templates/Panel.panel.phtml';
-        return ob_get_clean();
-    }
+		require __DIR__ . '/templates/Panel.panel.phtml';
+		return ob_get_clean();
+	}
 }
