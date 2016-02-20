@@ -7,7 +7,7 @@ namespace Krausv\PermissionsPanel;
 <div class="tracy-inner">
 		<?php foreach ($resources as $resource):?>
 			<h2 title="Resource <?=$resource?>"><?=$resource?></h2>
-			<?php $tmp = $permissions["\x00Nette\\Security\\Permission\x00rules"]["byResource"][$resource]; ?>
+			<?php $tmp = $permissions["byResource"][$resource]; ?>
 			<table>
 			<tr>
 			<th>Role</th>
@@ -19,7 +19,7 @@ namespace Krausv\PermissionsPanel;
 						<td><?=$role?></td>
 							<td>
 							<?php foreach($tmp["byRole"][$role]["byPrivilege"] as $key => $allow): ?>
-								<?=$key ?>
+								<?=$key ?>,
 							<?php endforeach ?>
 							</td>
 						</tr>
@@ -27,4 +27,5 @@ namespace Krausv\PermissionsPanel;
 				<?php endforeach ?>
 			</table>
 	<?php endforeach ?>
+
 </div>
