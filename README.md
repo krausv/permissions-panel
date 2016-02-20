@@ -15,3 +15,15 @@ and register permissions-panel in config.neon
 ~~~
 extensions:
   permissions-panel: Krausv\PermissionsPanel\Nette\DI\PermissionsPanelExtension(%debugMode%)
+  
+services:
+	authorizator:
+	    class: Nette\Security\Permission
+	    setup:
+	        - addRole('guest')
+	        - addRole('admin')
+	        - addResource('Users')
+	        - addResource('Article')
+	        - allow('admin', 'Article', 'view')
+	        - allow('guest', 'Users', 'view')
+	        - allow('guest', 'Users', 'delete')
