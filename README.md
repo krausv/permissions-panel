@@ -10,12 +10,16 @@ permission-panel is simple bar panel for [Tracy](https://tracy.nette.org/). Perm
 $ composer require krausv/permissions-panel
 ~~~
 
-and register permissions-panel in config.neon
+Register permissions-panel in config.neon
 
 ~~~
 extensions:
   permissions-panel: Krausv\PermissionsPanel\Nette\DI\PermissionsPanelExtension(%debugMode%)
-  
+~~~
+
+and register [Nette\Security\Permission](https://api.nette.org/2.3.8/Nette.Security.Permission.html)
+
+~~~
 services:
 	authorizator:
 	    class: Nette\Security\Permission
