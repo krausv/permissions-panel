@@ -2,7 +2,7 @@
   "name": "krausv/permissions-panel",
   "type": "library",
   "description": "Bar with list of permissions",
-  "keywords": ["tracy", "bar", "vendor", "composer", "composer.lock"],
+  "keywords": ["tracy", "bar", "vendor", "composer"],
   "license": ["MIT"],
   "authors": [
     {
